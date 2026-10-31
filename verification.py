@@ -49,4 +49,7 @@ err_euler = [abs(apogee_euler(p, d) - ref) for d in dts]
 plt.loglog(dts, err_euler, "o-", label="Euler")
 plt.loglog(dts, err_rk4, "s-", label="RK4")
 plt.xlabel("Time step dt (s)"); plt.ylabel("Apogee error (m)")
-plt.legend(); plt.grid(True, which="both"); plt.show()
+plt.legend(); plt.grid(True, which="both"); 
+plt.tight_layout()
+plt.savefig("figures/time_step_convergence.png",dpi=200)
+plt.show()

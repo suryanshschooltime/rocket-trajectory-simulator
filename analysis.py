@@ -31,7 +31,7 @@ for label, key in inputs:
 
 plt.barh(list(effect_10.keys()), list(effect_10.values()))
 plt.xlabel("Change in apogee for a +10% change in input (%)")
-plt.axvline(0, color="k"); plt.grid(True, axis="x"); plt.show()
+plt.axvline(0, color="k"); plt.grid(True, axis="x"); plt.tight_layout(); plt.savefig("figures/sensitivity.png", dpi =200); plt.show()
 
 # ---- 2) Monte Carlo: 300 flights with random uncertainty (takes about a minute) ----
 rng = np.random.default_rng(42)
@@ -50,4 +50,4 @@ print(f"Monte Carlo ({N} flights): mean {results.mean():.0f} m, std {results.std
 
 plt.hist(results, bins=25)
 plt.axvline(OPENROCKET_APOGEE, color="k", linestyle="--", label="OpenRocket (1312 m)")
-plt.xlabel("Apogee (m)"); plt.ylabel("Number of flights"); plt.legend(); plt.show()
+plt.xlabel("Apogee (m)"); plt.ylabel("Number of flights"); plt.legend(); plt.tight_layout(); plt.savefig("figures/monte_carlo.png", dpi=200); plt.show()

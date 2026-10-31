@@ -121,4 +121,6 @@ if __name__ == "__main__":
     plt.plot(t_or, h_or, label="OpenRocket")
     plt.plot(t, h, "--", label="My simulator (fitted Cd)")
     plt.xlabel("Time (s)"); plt.ylabel("Altitude (m)"); plt.legend(); plt.grid(True)
+    plt.tight_layout()
+    plt.savefig("figures/altitude_comparison.png",dpi=200)
     plt.show()
