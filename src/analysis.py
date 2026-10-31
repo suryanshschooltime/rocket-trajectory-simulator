@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import src.simulator as sim
+import simulator as sim
 
 # ---- same parameters as before ----
 t_c, f_c, m_prop, m_total = sim.load_eng("data/motor_details.eng")
