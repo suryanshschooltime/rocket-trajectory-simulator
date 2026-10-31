@@ -1,9 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import simulator as sim
+import src.simulator as sim
 
 # ---- same parameters as simulator.py ----
-t_c, f_c, m_prop, m_total = sim.load_eng("motor_details.eng")
+t_c, f_c, m_prop, m_total = sim.load_eng("data/motor_details.eng")
 cum = np.concatenate(([0.0], np.cumsum(np.diff(t_c) * (f_c[1:] + f_c[:-1]) / 2)))
 p = {"t": t_c, "f": f_c, "cum_impulse": cum,
      "m_dry": 0.856 + (m_total - m_prop), "m_prop": m_prop,

@@ -83,7 +83,7 @@ if __name__ == "__main__":
     ROCKET_MASS = 0.856        # kg, "Mass with no motors"
     DIAMETER = 0.0762          # m (3 in)
 
-    t_c, f_c, m_prop, m_total = load_eng("motor_details.eng")
+    t_c, f_c, m_prop, m_total = load_eng("data/motor_details.eng")
     cum = np.concatenate(([0.0], np.cumsum(np.diff(t_c) * (f_c[1:] + f_c[:-1]) / 2)))
     p = {"t": t_c, "f": f_c, "cum_impulse": cum,
          "m_dry": ROCKET_MASS + (m_total - m_prop),  # rocket + empty motor casing
@@ -94,7 +94,7 @@ if __name__ == "__main__":
     print(f"Total impulse: {cum[-1]:.0f} N*s")
 
     #climb to apogee only
-    df = load_openrocket_csv("Best_open_Rocket.csv")
+    df = load_openrocket_csv("data/Best_open_Rocket.csv")
     t_or, h_or = column_si(df, "Time"), column_si(df, "Altitude")
     i_ap = np.argmax(h_or)
     cd_or = np.nanmean(column_si(df, "Drag coefficient")[: i_ap + 1])
