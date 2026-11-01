@@ -18,7 +18,7 @@ A Python simulator that predicts the vertical flight of a model rocket (altitude
 - Gravity, and quadratic drag with air density that falls with altitude
 - Mass that decreases as propellant burns (in proportion to impulse delivered)
 - RK4 numerical integration (time step 0.01 s)
-- - RK4 error is smaller than Euler's at every time step tested (about 40× smaller at dt = 0.01 s).
+- RK4 error is smaller than Euler's at every time step tested (about 40× smaller at dt = 0.01 s).
 
 ## The rocket
 Designed in OpenRocket (`data/rocket.ork`): 3 in diameter, 36.7 in long, 856 g without motor, 1420 g with an I-class motor (about 397 N·s total impulse), static stability 1.47 calibers. Reference simulation settings: wind 0 m/s, rod angle 0°, sea level, standard atmosphere.
