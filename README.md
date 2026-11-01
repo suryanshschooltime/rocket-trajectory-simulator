@@ -8,7 +8,7 @@ A Python simulator that predicts the vertical flight of a model rocket (altitude
 | Fitted drag coefficient | 0.415 (OpenRocket average: 0.40), altitude RMSE 2.5 m |
 | Verification: no-drag analytic test | 4344.5491 m vs. 4344.5491 m |
 | Verification: constant-density drag formula | 915.703 m vs. 915.703 m |
-| Time-step convergence | RK4 apogee error about 5 mm at dt = 0.01 s |
+| Time-step convergence | RK4 apogee error about 4.5 mm at dt = 0.01 s (Euler: 0.19 m) |
 | Monte Carlo (300 flights) | mean 1311 m, std 72 m, 90% between 1202 and 1432 m |
 
 ![Altitude comparison](figures/altitude_comparison.png)
@@ -18,11 +18,12 @@ A Python simulator that predicts the vertical flight of a model rocket (altitude
 - Gravity, and quadratic drag with air density that falls with altitude
 - Mass that decreases as propellant burns (in proportion to impulse delivered)
 - RK4 numerical integration (time step 0.01 s)
+- - RK4 error is smaller than Euler's at every time step tested (about 40× smaller at dt = 0.01 s).
 
 ## The rocket
 Designed in OpenRocket (`data/rocket.ork`): 3 in diameter, 36.7 in long, 856 g without motor, 1420 g with an I-class motor (about 397 N·s total impulse), static stability 1.47 calibers. Reference simulation settings: wind 0 m/s, rod angle 0°, sea level, standard atmosphere.
 
-![OpenRocket design](figures/openrocket_simulation_5.png)
+![OpenRocket design](figures/openrocket_simulation.png)
 
 ## Verification (is the code solving the equations correctly?)
 - With drag turned off, the simulated apogee matches v²/2g exactly.
@@ -44,14 +45,12 @@ Changing each input by +10%: motor thrust gives +8.9% apogee, drag coefficient a
 - Mass, motor data, and the baseline drag coefficient were taken from OpenRocket, so the comparison tests my dynamics and integration, not an independent drag estimate
 
 ## How to run
-```
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 python src/simulator.py
 python src/verification.py
 python src/analysis.py
-```
 
 ## Repo layout
 `data/` motor file, OpenRocket export, rocket design · `src/` code · `figures/` plots

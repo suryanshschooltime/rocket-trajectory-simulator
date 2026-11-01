@@ -45,6 +45,8 @@ dts = [0.1, 0.05, 0.02, 0.01, 0.005]
 ref = sim.simulate(p, dt=0.001)[1].max()   # fine-step reference
 err_rk4 = [abs(sim.simulate(p, dt=d)[1].max() - ref) for d in dts]
 err_euler = [abs(apogee_euler(p, d) - ref) for d in dts]
+for d, e_rk4, e_eul in zip(dts, err_rk4, err_euler):
+    print(f"dt = {d:<6} RK4 error = {e_rk4:.5f} m   Euler error = {e_eul:.5f} m")
 
 plt.loglog(dts, err_euler, "o-", label="Euler")
 plt.loglog(dts, err_rk4, "s-", label="RK4")
